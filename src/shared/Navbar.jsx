@@ -36,7 +36,7 @@ const Navbar = () => {
                     <div className="w-10 rounded-full">
                         <CgProfile className="text-3xl"></CgProfile>
                     </div>
-                    <a className="btn"><Link to="/login">Login</Link></a>
+                    <button className="btn"><Link to="/login">Login</Link></button>
                 </div>
             </div>
         </div>
