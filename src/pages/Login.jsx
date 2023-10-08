@@ -28,7 +28,7 @@ const Login = () => {
         .catch(error=>{
             console.log(error.message);
             setRegError(error.message);
-            toast('invalid-login-credentials');
+            //toast('invalid-login-credentials');
         })
 
     }
