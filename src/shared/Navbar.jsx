@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 
 
@@ -23,7 +23,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">Blissful Beginnings</a>
+                    <a className="btn btn-ghost normal-case text-xl">Blissful</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -36,7 +36,7 @@ const Navbar = () => {
                     <div className="w-10 rounded-full">
                         <CgProfile className="text-3xl"></CgProfile>
                     </div>
-                    <a className="btn">Login</a>
+                    <a className="btn"><Link to="/login">Login</Link></a>
                 </div>
             </div>
         </div>

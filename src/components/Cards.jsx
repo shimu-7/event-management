@@ -12,7 +12,7 @@ const Cards = () => {
     }, [])
     return (
         <div>
-            <h2 className="text-3xl font-bold my-10 text-center">Services We Provide</h2>
+            <h2 className="text-3xl font-bold mt-12 mb-6 text-center">Services We Provide</h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                 {
                     events.map(event =><Card event={event} key={event.name}></Card>)
