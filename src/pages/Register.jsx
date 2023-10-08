@@ -3,6 +3,7 @@ import Navbar from "../shared/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import Footer from "../components/Footer";
 
 
 const Register = () => {
@@ -70,6 +71,8 @@ const Register = () => {
                     <Toaster />
                 </div>
             </div>
+
+            <Footer></Footer>
 
         </div>
     );

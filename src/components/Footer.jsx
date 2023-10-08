@@ -3,6 +3,9 @@
 const Footer = () => {
     return (
         <div className="mt-10">
+            <div className="w-full h-[2px] bg-slate-300 mt-12">
+
+            </div>
 
             <footer className="footer p-10  text-base-content">
                 <nav>
