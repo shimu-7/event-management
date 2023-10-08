@@ -43,7 +43,7 @@ const Navbar = () => {
                         <CgProfile className="text-3xl"></CgProfile>
                     </div>
                     {
-                        user ? <button onClick={logOut} className="btn"><Link to="/login">Logout</Link></button> : <button className="btn"><Link to="/login">Login</Link></button>
+                        user ? <Link to="/"><button onClick={logOut} className="btn">Logout</button></Link> :<Link to="/login"> <button className="btn">Login</button></Link>
 
                     }
                     {/* <button className="btn"><Link to="/login">Login</Link></button> */}
