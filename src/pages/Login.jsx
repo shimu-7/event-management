@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../shared/Navbar";
 import toast, { Toaster } from "react-hot-toast";
 import { useContext, useState } from "react";
@@ -12,6 +12,9 @@ const Login = () => {
 
     const {logIn} = useContext(AuthContext);
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
 
     const handleLogin = e =>{
         e.preventDefault();
@@ -24,6 +27,10 @@ const Login = () => {
         .then(result =>{
             console.log(result.user);
             toast('Successfully Logged In');
+            setTimeout(() => {
+                navigate(location?.state ? location.state : '/')
+              }, 1000);   
+            
         })
         .catch(error=>{
             console.log(error.message);

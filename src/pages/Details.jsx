@@ -13,7 +13,7 @@ const Details = () => {
         <div>
             <Navbar></Navbar>
             <div className="card card-compact  bg-base-100 shadow-xl">
-                <figure><img src={image} className='w-full h-3/4' alt="Shoes" /></figure>
+                <figure><img src={image} className='w-full h-[300px]' alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
                     <p className="font-medium">Service Package: {price}Tk</p>

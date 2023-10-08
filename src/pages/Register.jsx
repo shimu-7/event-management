@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../shared/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
@@ -10,26 +10,34 @@ const Register = () => {
 
     const [regError, setRegError] = useState(null);
 
-    const {createUser} = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
     // const notify = () => toast('Registration successful');
 
-    const handleRegister = e =>{
+    const handleRegister = e => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email, password);
         setRegError(null);
 
-        createUser(email,password)
-        .then(result =>{
-            console.log(result.user);
-            toast('Registration successful');
-        })
-        .catch(error=>{
-            console.log(error.message);
-            setRegError(error.message);
-        })
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user);
+                
+                toast('Registration successful');
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : '/')
+                  }, 1000);         
+                
+            })
+            .catch(error => {
+                console.log(error.message);
+                setRegError(error.message);
+            })
     }
 
 
