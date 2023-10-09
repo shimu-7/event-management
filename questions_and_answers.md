@@ -15,7 +15,7 @@ console.log(greetign);
 - B: `ReferenceError: greetign is not defined`
 - C: `undefined`
 
-<details><summary><b>Answer</b></summary>
+<details><summary><b>Answer :</b>C . Without declaration,  empty object is assigned to greetign.</summary>
 <p>
 
 #### Answer: C .
@@ -40,7 +40,7 @@ sum(1, "2");
 - C: `"12"`
 - D: `3`
 
-<details><summary><b>Answer</b></summary>
+<details><summary><b>Answer</b>C . In sum function ,there are two parameter and when sum function is called , one integer type value and one string type value passes. that's why sum function returned sting "12". </summary>
 <p>
 
 #### Answer: C .
@@ -66,7 +66,7 @@ console.log(food);
 - C: `['🍝', '🍕', '🍫', '🥑', '🍔']`
 - D: `ReferenceError`
 
-<details><summary><b>Answer</b></summary>
+<details><summary><b>Answer : </b>A. Because there is no operation ocurred in food array.</summary>
 <p>
 
 #### Answer: A. 
@@ -91,7 +91,7 @@ console.log(sayHi());
 - C: `Hi there, null`
 - D: `ReferenceError`
 
-<details><summary><b>Answer</b></summary>
+<details><summary><b>Answer :</b>B . sayHi function return "Hi there, ${name}" . When the function is called there is no value given to name parameter.</summary>
 <p>
 
 #### Answer: B
@@ -119,7 +119,7 @@ console.log(count);
 - C: 3
 - D: 4
 
-<details><summary><b>Answer</b></summary>
+<details><summary><b>Answer :</b>C . For each truthy value of nums , count variable is incremented. nums[0] = 0 which is falsy value. For the rest of the values , count will incremented as 1. </summary>
 <p>
 
 #### Answer: C
