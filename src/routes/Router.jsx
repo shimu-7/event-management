@@ -6,12 +6,15 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Details from "../pages/Details";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../pages/ErrorPage";
+import Profile from "../pages/Profile";
 
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
+      errorElement: <ErrorPage></ErrorPage>,
       children:[
         {
           path: "/",
@@ -34,6 +37,10 @@ const router = createBrowserRouter([
         {
           path: "/register",
           element: <Register></Register>
+        },
+        {
+          path: "/profile",
+          element: <PrivateRoute><Profile></Profile></PrivateRoute>
         }
       ]
     },
