@@ -8,6 +8,7 @@ import Details from "../pages/Details";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
 import Profile from "../pages/Profile";
+import Blog from "../pages/Blog";
 
 
 const router = createBrowserRouter([
@@ -41,7 +42,12 @@ const router = createBrowserRouter([
         {
           path: "/profile",
           element: <PrivateRoute><Profile></Profile></PrivateRoute>
+        },
+        {
+          path: "/blog",
+          element: <PrivateRoute><Blog></Blog></PrivateRoute>
         }
+        
       ]
     },
   ]);

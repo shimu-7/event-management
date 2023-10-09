@@ -12,9 +12,9 @@ const Profile = () => {
             <Navbar></Navbar>
             <h2 className="text-3xl my-10 text-center font-semibold">My Account</h2>
             <div>
-                <div className="grid h-20 rounded bg-emerald-100 text-black place-content-center">{user.displayName ? user.displayName : 'Display name Not Showed'
+                <div className="grid h-20 rounded bg-emerald-100 font-medium text-black place-content-center">{user.displayName ? user.displayName : 'Display name Not Showed'
                 }</div>
-                <div className="grid  h-20 rounded bg-accent text-accent-content place-content-center">{user.photoURL? user.photoURL :<CgProfile className="text-5xl"></CgProfile>}</div>
+                <div className="grid  h-20 rounded bg-accent  place-content-center">{user.photoURL? <img className="h-16 w-20 rounded-full" src={user.photoURL}></img> :<CgProfile className="text-5xl"></CgProfile>}</div>
                 <div className="grid  h-20 rounded bg-emerald-100 text-black font-medium place-content-center">{user.email}</div>
             </div>
             <Footer></Footer>

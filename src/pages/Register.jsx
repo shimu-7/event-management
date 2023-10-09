@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "../components/Footer";
+import { updateProfile } from "firebase/auth";
+
 
 
 const Register = () => {
@@ -11,6 +13,7 @@ const Register = () => {
     const [regError, setRegError] = useState(null);
 
     const { createUser } = useContext(AuthContext);
+    
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,18 +24,26 @@ const Register = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password);
+        const username = e.target.name.value;
+        const photo = e.target.photo.value;
+        console.log(email, password, username, photo);
         setRegError(null);
 
-        createUser(email, password)
+        createUser(email, password, username, photo)
             .then(result => {
                 console.log(result.user);
-                
+
+                updateProfile(result.user,{
+                    displayName: username, photoURL: photo
+                })
+                .then()
+                .catch()
+
                 toast('Registration successful');
                 setTimeout(() => {
                     navigate(location?.state ? location.state : '/')
-                  }, 1000);         
-                
+                }, 1000);
+
             })
             .catch(error => {
                 console.log(error.message);
@@ -52,6 +63,18 @@ const Register = () => {
 
                         <h1 className="text-4xl font-bold text-center my-5">Please Register</h1>
                         <form onSubmit={handleRegister} className="card-body">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">User Name</span>
+                                </label>
+                                <input type="text" placeholder="User Name" className="input input-bordered" name="name" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo URL</span>
+                                </label>
+                                <input type="url" placeholder="Photo URL" className="input input-bordered" name="photo"  />
+                            </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>

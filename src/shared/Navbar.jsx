@@ -14,6 +14,7 @@ const Navbar = () => {
         {/* <li><NavLink >About</NavLink></li> */}
 
         <li><NavLink to="/profile">Profile</NavLink></li>
+        <li><NavLink to="/blog">Blog</NavLink></li>
         <li><NavLink to="/register">Register</NavLink></li>
         {/* <li><NavLink to="/login">Login</NavLink></li> */}
 
@@ -40,9 +41,16 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end gap-[1px]">
+                    <div>
+                        {
+                            user?.displayName ? <p className="font-medium">{user.displayName}</p>: " "
+                        }
+                    </div>
                     <div className="w-10 rounded-full">
-                        <CgProfile className="text-3xl"></CgProfile>
+                        {
+                            user?.photoURL ? <img src={user.photoURL} className="h-10 w-10 rounded-full"></img> : <CgProfile className="text-3xl"></CgProfile>
+                        }
                     </div>
                     {
                         user ? <Link to="/"><button onClick={logOut} className="btn">Logout</button></Link> :<Link to="/login"> <button className="btn">Login</button></Link>

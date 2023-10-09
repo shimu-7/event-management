@@ -1,44 +1,46 @@
 import { createContext, useEffect, useState } from "react";
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app);
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
-    const [user,setUser] = useState(null);
-    const [isLoading, setIsLoading] =useState(true);
+    const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const createUser =(email,password) =>{
+    const createUser = (email, password, username, photo) => {
         setIsLoading(true);
-        return createUserWithEmailAndPassword(auth,email,password);
-    }
-
-    const logIn =(email,password) =>{
-        setIsLoading(true);
-        return signInWithEmailAndPassword(auth,email,password);
+        return createUserWithEmailAndPassword(auth, email, password, username, photo);
     }
 
 
-    useEffect(()=>{
-       const unSubscribe = onAuthStateChanged(auth, currentUser =>{
+
+    const logIn = (email, password) => {
+        setIsLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
+
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setIsLoading(false);
         });
-        return ()=> unSubscribe();
-    },[]);
+        return () => unSubscribe();
+    }, []);
 
-    const logOut = () =>{
+    const logOut = () => {
         setIsLoading(true);
         return signOut(auth);
     }
 
-    const authInfo={user,createUser,logIn,logOut, isLoading}
+    const authInfo = { user, createUser, logIn, logOut, isLoading }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
-            
+
         </AuthContext.Provider>
     );
 };
