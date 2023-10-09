@@ -1,12 +1,25 @@
-import {  Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import toast from "react-hot-toast";
 
 
 const Navbar = () => {
 
-    const {user,logOut} = useContext(AuthContext);
+    const { user, logOut, googleSignIn } = useContext(AuthContext);
+
+    const handleGoogleLogin = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result.user);
+                toast('Successfully Signed In Via Google');
+                // setTimeout(() => {
+                //     navigate(location?.state ? location.state : '/')
+                // }, 1000);
+            })
+            .catch()
+    }
     // console.log(user.email)
 
     const links = <>
@@ -16,6 +29,7 @@ const Navbar = () => {
         <li><NavLink to="/profile">Profile</NavLink></li>
         <li><NavLink to="/blog">Blog</NavLink></li>
         <li><NavLink to="/register">Register</NavLink></li>
+        <li><Link onClick={handleGoogleLogin} to="/">Google Login</Link></li>
         {/* <li><NavLink to="/login">Login</NavLink></li> */}
 
 
@@ -44,21 +58,23 @@ const Navbar = () => {
                 <div className="navbar-end gap-[1px]">
                     <div>
                         {
-                            user?.displayName ? <p className="font-medium">{user.displayName}</p>: " "
+                            user?.displayName ? <p className="font-medium">{user.displayName}</p> : " "
                         }
                     </div>
+
                     <div className="w-10 rounded-full">
                         {
-                            user?.photoURL ? <img src={user.photoURL} className="h-10 w-10 rounded-full"></img> : <CgProfile className="text-3xl"></CgProfile>
+                            user?.photoURL ? <img className="h-10 w-10 rounded-full" src={`${user.photoURL}`} referrerPolicy="no-referrer" ></img> : <CgProfile className="text-3xl"></CgProfile>
                         }
                     </div>
                     {
-                        user ? <Link to="/"><button onClick={logOut} className="btn">Logout</button></Link> :<Link to="/login"> <button className="btn">Login</button></Link>
+                        user ? <Link to="/"><button onClick={logOut} className="btn">Logout</button></Link> : <Link to="/login"> <button className="btn">Login</button></Link>
 
                     }
                     {/* <button className="btn"><Link to="/login">Login</Link></button> */}
                 </div>
             </div>
+            
         </div>
     );
 };

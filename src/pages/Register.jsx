@@ -13,7 +13,7 @@ const Register = () => {
     const [regError, setRegError] = useState(null);
 
     const { createUser } = useContext(AuthContext);
-    
+
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -29,16 +29,30 @@ const Register = () => {
         console.log(email, password, username, photo);
         setRegError(null);
 
+        if (password.length < 6) {
+            setRegError('password should be at least 6 characters or more')
+            return;
+        }
+        else if (!/[!@#$%^&*]/.test(password)) {
+            setRegError(' Password should contain at least one  special character')
+            return
+        }
+        else if (!/[A-Z]/.test(password)) {
+            setRegError('Password should contain Capital letter')
+            return
+        }
+        
+
         createUser(email, password, username, photo)
             .then(result => {
                 console.log(result.user);
 
-                updateProfile(result.user,{
+                updateProfile(result.user, {
                     displayName: username, photoURL: photo
                 })
-                .then()
-                .catch()
-
+                    .then()
+                    .catch()
+                
                 toast('Registration successful');
                 setTimeout(() => {
                     navigate(location?.state ? location.state : '/')
@@ -73,7 +87,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input type="url" placeholder="Photo URL" className="input input-bordered" name="photo"  />
+                                <input type="url" placeholder="Photo URL" className="input input-bordered" name="photo" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
